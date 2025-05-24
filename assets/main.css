@@ -22759,4 +22759,14 @@ img {
   height: auto;
 }
 
+.highlight-phd {
+  font-weight: bold;
+  color: #d63384; /* pastel pink */
+}
+
+.highlight-master {
+  font-weight: bold;
+  color: #198754; /* pastel green */
+}
+
 /*# sourceMappingURL=main.css.map */
