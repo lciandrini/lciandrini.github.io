@@ -1,0 +1,22 @@
+title: Luca Ciandrini
+description: "Luca Ciandrini's Academic webpage"
+url: "https://lciandrini.github.io"
+baseurl: ""
+
+plugins:
+  - jekyll-scholar
+
+scholar:
+  style: ./_citesty.csl
+  bibliography: assets/ref.bib
+  bibliography_template: bibtemplate
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE_CODE_TASK.md
+  - update_bootstrap.sh
+  - package.json
+  - node_modules
+  - .DS_Store
