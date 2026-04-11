@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /hid-group-organisation/
+
+Sitemap: https://lciandrini.github.io/sitemap.xml
