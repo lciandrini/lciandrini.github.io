@@ -1,0 +1,112 @@
+/* =====================================================
+   lciandrini.github.io — custom styles
+   Loaded separately so Jekyll never overwrites them.
+   ===================================================== */
+
+/* Global link color — teal */
+a { color: #0f9e7a; }
+a:hover { color: #0f6e56; }
+a:visited { color: #0a7a5e; }
+
+/* Navbar — light theme with teal accent */
+.navbar {
+  background-color: #f8f9fa !important;
+  color: #000;
+  border-bottom: 4px solid #0f9e7a;
+  margin-bottom: 20px;
+}
+.navbar-brand { color: #1a1a1a !important; font-weight: 500; }
+.navbar-nav .nav-link { color: #444 !important; }
+.navbar-nav .nav-link:hover { color: #0f9e7a !important; }
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-item.active .nav-link {
+  color: #0f9e7a !important;
+  border-bottom: 2px solid #0f9e7a;
+  padding-bottom: 2px;
+}
+
+/* Body */
+body { color: #1a1a1a; line-height: 1.7; }
+h3 { color: #0f6e56; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Section label (team page) */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #0f9e7a;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* News items */
+.news-item {
+  border-left: 2px solid #0f9e7a;
+  padding-left: 10px;
+  margin-bottom: 12px;
+}
+
+/* Bibliography entries — white background, gray left border */
+.bibliography li {
+  border-left: 3px solid #d8dede;
+  background: #fff;
+  padding: 8px 10px 8px 12px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 10px;
+}
+
+/* Preprint entries — amber accent, overrides rule above */
+#preprints ~ .bibliography li,
+.bibliography li[data-type="unpublished"],
+.bibliography li.unpublished {
+  border-left: 3px solid #d4a017;
+  background-color: #fffdf5;
+  padding-left: 12px;
+  border-radius: 0 5px 5px 0;
+  margin-bottom: 10px;
+}
+
+/* Team reveal panels */
+.reveal-panel {
+  display: none;
+  border: 1px solid #0f9e7a;
+  background: #f0faf6;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+}
+.reveal-panel.visible { display: block; }
+.rp-arrow {
+  position: absolute;
+  top: -7px;
+  left: 40px;
+  width: 12px;
+  height: 12px;
+  background: #f0faf6;
+  border-top: 1px solid #0f9e7a;
+  border-left: 1px solid #0f9e7a;
+  transform: rotate(45deg);
+}
+.rp-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+  line-height: 1;
+  background: none;
+  border: none;
+}
+.rp-name {
+  font-weight: 600;
+  color: #0f6e56;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+.team-member-wrap { cursor: pointer; }
+.team-member-wrap.tm-active { border: 2px solid #0f9e7a !important; background: #f0faf6; }
