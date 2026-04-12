@@ -141,9 +141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span style="display:inline-block;margin-top:8px;font-size:10px;padding:2px 10px;border-radius:10px;background:#dce8f7;color:#1a4f8a;font-weight:600;">Engineer</span>
     </div>
 
-  </div>
-
-  <!-- Bio panels — outside the grid so cards never reflow -->
+  <!-- Bio panels — inside the grid, JS moves them after the clicked card's row -->
   <div class="reveal-panel" id="bio-luca">
     <div class="rp-arrow"></div>
     <button class="rp-close" onclick="event.stopPropagation();closeTeam()">×</button>
@@ -173,6 +171,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="rp-close" onclick="event.stopPropagation();closeTeam()">×</button>
     <div class="rp-name">Pascal Silvan Rogalla</div>
     <div>Engineer. Pascal first joined as an Erasmus intern in 2017 and has now returned as a full member of the team. His work focuses on developing a theoretical framework linking mRNA translation and the formation of molecular condensates.</div>
+  </div>
+
   </div>
 </div>
 
@@ -219,12 +219,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>
 .reveal-panel {
   display: none;
+  grid-column: 1 / -1;
   border: 1px solid #0f9e7a;
   background: #f0faf6;
   border-radius: 6px;
   padding: 12px 16px;
   margin-top: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   font-size: 14px;
   line-height: 1.6;
   position: relative;
@@ -269,33 +270,33 @@ function closeTeam() {
   document.querySelectorAll('.team-member-wrap').forEach(function(w) { w.classList.remove('tm-active'); });
 }
 
-function positionArrow(panelId, idx) {
-  var arrow = document.querySelector('#' + panelId + ' .rp-arrow');
-  if (!arrow) return;
-  var grid = document.getElementById('team-grid');
-  if (!grid) return;
-  var cards = grid.querySelectorAll('.team-member-wrap');
-  if (!cards[idx]) return;
-  var gridRect = grid.getBoundingClientRect();
-  var cardRect = cards[idx].getBoundingClientRect();
-  var offset = (cardRect.left - gridRect.left) + cardRect.width / 2 - 6;
-  arrow.style.left = Math.max(10, offset) + 'px';
-}
-
 (function() {
   document.querySelectorAll('.team-member-wrap').forEach(function(wrap) {
     wrap.addEventListener('click', function() {
       var key = wrap.getAttribute('data-member');
-      var idx = parseInt(wrap.getAttribute('data-idx'), 10);
       var panelId = 'bio-' + key;
       var panel = document.getElementById(panelId);
       if (!panel) return;
       var wasOpen = panel.classList.contains('visible');
       closeTeam();
       if (!wasOpen) {
+        // Find the last card in the same visual row by comparing top positions
+        var grid = document.getElementById('team-grid');
+        var cards = Array.from(grid.querySelectorAll('.team-member-wrap'));
+        var clickedTop = wrap.getBoundingClientRect().top;
+        var lastInRow = wrap;
+        cards.forEach(function(c) {
+          if (Math.abs(c.getBoundingClientRect().top - clickedTop) < 5) lastInRow = c;
+        });
+        // Insert panel immediately after the last card in that row
+        lastInRow.after(panel);
         panel.classList.add('visible');
         wrap.classList.add('tm-active');
-        positionArrow(panelId, idx);
+        // Point the arrow at the clicked card
+        var gridRect = grid.getBoundingClientRect();
+        var cardRect = wrap.getBoundingClientRect();
+        var arrow = panel.querySelector('.rp-arrow');
+        if (arrow) arrow.style.left = Math.max(10, (cardRect.left - gridRect.left) + cardRect.width / 2 - 6) + 'px';
       }
     });
   });
