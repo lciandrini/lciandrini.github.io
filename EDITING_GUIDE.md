@@ -41,10 +41,10 @@ Edit **`team/index.html`** — three things:
 
 ```html
 <div class="team-member-wrap" data-member="KEY" data-idx="N"
-     style="text-align:center;border:1px solid #dde;border-radius:8px;padding:14px 8px 10px;cursor:pointer;transition:border-color 0.15s,background 0.15s;">
+     style="text-align:center;border:2px solid #dde;border-radius:8px;padding:14px 6px 10px;cursor:pointer;transition:border-color 0.15s,background 0.15s;">
   <img src="https://lciandrini.github.io/assets/images/team/PHOTO.jpg"
        style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid #e0e0e0;" />
-  <div style="font-weight:600;font-size:13px;margin-top:8px;line-height:1.3;">Full Name</div>
+  <div style="font-weight:600;font-size:12px;margin-top:8px;line-height:1.3;">Full Name</div>
   <div style="font-size:11px;color:#666;margin-top:3px;">since Mon YYYY</div>
   <span style="display:inline-block;margin-top:8px;font-size:10px;padding:2px 10px;border-radius:10px;BADGE_STYLE;font-weight:600;">LABEL</span>
 </div>
